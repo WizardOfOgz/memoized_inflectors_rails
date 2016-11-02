@@ -37,25 +37,33 @@ RSpec.describe MemoizedInflectorsRails do
     end
   end
 
-  it "clear a customized set of caches" do
-    Rails.application.config.memoized_inflectors_reload_caches = %i[underscore classify]
-
-    ::MemoizedInflectors.cache_for(:underscore).clear
-    ::MemoizedInflectors.cache_for(:classify).clear
-
-    "testCase".underscore
-    "testCase".classify
-
-    aggregate_failures do
-      expect(::MemoizedInflectors.cache_for(:underscore).count).to eq(1)
-      expect(::MemoizedInflectors.cache_for(:classify).count).to eq(1)
+  context do
+    before(:all) do
+      Rails.application.config.memoized_inflectors_reload_caches = %i[underscore classify]
     end
 
-    Reloader.reload!
+    after(:all) do
+      Rails.application.config.memoized_inflectors_reload_caches = %i[constantize safe_constantize]
+    end
 
-    aggregate_failures do
-      expect(::MemoizedInflectors.cache_for(:underscore).count).to eq(0)
-      expect(::MemoizedInflectors.cache_for(:classify).count).to eq(0)
+    it "clear a customized set of caches" do
+      ::MemoizedInflectors.cache_for(:underscore).clear
+      ::MemoizedInflectors.cache_for(:classify).clear
+
+      "testCase".underscore
+      "testCase".classify
+
+      aggregate_failures do
+        expect(::MemoizedInflectors.cache_for(:underscore).count).to eq(1)
+        expect(::MemoizedInflectors.cache_for(:classify).count).to eq(1)
+      end
+
+      Reloader.reload!
+
+      aggregate_failures do
+        expect(::MemoizedInflectors.cache_for(:underscore).count).to eq(0)
+        expect(::MemoizedInflectors.cache_for(:classify).count).to eq(0)
+      end
     end
   end
 end

@@ -1,6 +1,8 @@
+[![Build Status](https://travis-ci.org/WizardOfOgz/memoized_inflectors_rails.svg?branch=master)](https://travis-ci.org/WizardOfOgz/memoized_inflectors_rails) [![Code Climate](https://codeclimate.com/github/WizardOfOgz/memoized_inflectors_rails/badges/gpa.svg)](https://codeclimate.com/github/WizardOfOgz/memoized_inflectors_rails)
+
 # Memoized Inflectors Rails
 
-This is the official Rails wrapper for the [memoized_inflectors gem](https://github.com/WizardOfOgz/memoized_inflectors).
+This is the official Rails wrapper for the [memoized_inflectors](https://github.com/WizardOfOgz/memoized_inflectors) gem.
 
 ## Installation
 

@@ -1,6 +1,6 @@
 # Memoized Inflectors Rails
 
-This is just a Rails wrapper for the [memoized_inflectors gem](https://github.com/WizardOfOgz/memoized_inflectors).
+This is the official Rails wrapper for the [memoized_inflectors gem](https://github.com/WizardOfOgz/memoized_inflectors).
 
 ## Installation
 
@@ -17,6 +17,24 @@ And then execute:
 Or install it yourself as:
 
     $ gem install memoized_inflectors_rails
+
+## Usage
+
+See the [Memoized Inflectors README](https://github.com/WizardOfOgz/memoized_inflectors/blob/master/README.md) for usage, configuration and documentation specific to that gem.
+
+Memoized values of some methods (`constantize` and `safe_constantize`) become stale when the Rails environment reloads. Such reloading happens by default when the application is running in development mode and code is modified. Memoized Inflectors Rails registers a to_prepare block which runs each time the Rails environment is reloaded and clears the sensitive caches.
+
+### Configuration
+
+It is possible to configure which caches are cleared when the application is reloaded by adding a line like the following to your `application.rb` file or to an environment file. It is recommended that you always include `constantize` and `safe_constantize`.
+
+```ruby
+Rails.application.config.memoized_inflectors_reload_caches = %i[constantize safe_constantize classify]
+```
+
+## TODOs
+
+* Add builds for multiple ruby versions and platforms.
 
 ## Development
 

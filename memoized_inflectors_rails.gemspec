@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["andyogzewalla@gmail.com"]
 
   spec.summary       = "A Rails wrapper for the memoized_inflectors gem."
-  spec.homepage      = "https://github.com/WizardOfOgz/memoized_inflectors"
+  spec.homepage      = "https://github.com/WizardOfOgz/memoized_inflectors_rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
